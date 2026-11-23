@@ -15,7 +15,7 @@ files=(
 
 for file in "${files[@]}"; do
   echo "Downloading $file..."
-  curl -fL -C - --retry 3 --retry-delay 5 \
+  curl -fL -C - --retry 5 --retry-delay 10 --retry-all-errors \
     "${BASE_URL}/${file}?download=1" \
     -o "${DATA_DIR}/${file}"
 done
