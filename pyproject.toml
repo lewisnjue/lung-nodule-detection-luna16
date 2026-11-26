@@ -7,7 +7,14 @@ authors = [
     { name = "lewisnjue", email = "njue.prime@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "diskcache>=5.6.3",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.5",
+    "simpleitk>=2.5.8",
+    "torch>=2.15.0",
+    "torchvision>=0.29.2",
+]
 
 [project.scripts]
 lung-nodule-detection-luna16 = "lung_nodule_detection_luna16:main"
@@ -15,3 +22,9 @@ lung-nodule-detection-luna16 = "lung_nodule_detection_luna16:main"
 [build-system]
 requires = ["uv_build>=0.13.1,<0.14.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "pandas>=3.1.1",
+]
