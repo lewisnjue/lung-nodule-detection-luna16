@@ -32,8 +32,8 @@ DATA_FOLDER = DEFAULT_MHD_DATA_FOLDER
 def getCandidateInfoList(
     require_on_disk=True,
     mhd_data_folder=DEFAULT_MHD_DATA_FOLDER,
-    annotations_csv=Path(f"{DEFAULT_MHD_DATA_FOLDER}/data/annotations.csv"),
-    candidates_csv=Path(f"{DEFAULT_MHD_DATA_FOLDER}/data/candidates.csv"),
+    annotations_csv=Path(f"{DEFAULT_MHD_DATA_FOLDER}/annotations.csv"),
+    candidates_csv=Path(f"{DEFAULT_MHD_DATA_FOLDER}/candidates.csv"),
 ):
     data_directory = Path(mhd_data_folder)
     mhd_files = list(data_directory.rglob("subset*/*.mhd"))
