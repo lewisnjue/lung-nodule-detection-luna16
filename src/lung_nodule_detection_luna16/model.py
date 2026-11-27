@@ -72,4 +72,4 @@ class LunaModel(nn.Module):
 
         conv_flat = block_out.view(block_out.size(0), -1)
         linear_output = self.head_linear(conv_flat)
-        return linear_output, self.head_linear(linear_output)
+        return linear_output, self.head_softmax(linear_output)
