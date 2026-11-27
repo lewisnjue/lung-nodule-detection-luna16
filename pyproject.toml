@@ -12,6 +12,7 @@ dependencies = [
     "matplotlib>=3.11.2",
     "numpy>=2.5.5",
     "simpleitk>=2.5.8",
+    "tensorboard>=2.21.0",
     "torch>=2.15.0",
     "torchvision>=0.29.2",
     "tqdm>=4.70.1",

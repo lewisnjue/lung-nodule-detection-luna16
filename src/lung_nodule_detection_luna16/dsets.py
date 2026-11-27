@@ -21,14 +21,19 @@ CandidateInfoTuple = namedtuple(
 ROOT_DIR = Path(__file__).parent.parent.parent.resolve()
 DATA_FOLDER = Path(f"{ROOT_DIR}/data")
 DEFAULT_MHD_DATA_FOLDER = Path(f"{ROOT_DIR}/data")
+DEFAULT_MHD_DATA_FOLDER = Path(
+    "/kaggle/input/datasets/avc0706/luna16/"
+)  # overriden temporatry for kaggle testing
+
+DATA_FOLDER = DEFAULT_MHD_DATA_FOLDER
 
 
 @functools.lru_cache(maxsize=1)
 def getCandidateInfoList(
     require_on_disk=True,
     mhd_data_folder=DEFAULT_MHD_DATA_FOLDER,
-    annotations_csv=Path(f"{ROOT_DIR}/data/annotations.csv"),
-    candidates_csv=Path(f"{ROOT_DIR}/data/candidates.csv"),
+    annotations_csv=Path(f"{DEFAULT_MHD_DATA_FOLDER}/data/annotations.csv"),
+    candidates_csv=Path(f"{DEFAULT_MHD_DATA_FOLDER}/data/candidates.csv"),
 ):
     data_directory = Path(mhd_data_folder)
     mhd_files = list(data_directory.rglob("subset*/*.mhd"))
@@ -156,7 +161,11 @@ class LunaDataset(Dataset):
         isValSet_bool=None,
         series_uid=None,
     ):
-        self.candidateInfo_list = copy.copy(getCandidateInfoList())
+        self.candidateInfo_list = copy.copy(
+            getCandidateInfoList(
+                mhd_data_folder="/kaggle/input/datasets/avc0706/luna16/"  # changed temp for testing training on kaggle
+            )
+        )
 
         if series_uid:
             self.candidateInfo_list = [
