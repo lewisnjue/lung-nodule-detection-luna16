@@ -11,23 +11,24 @@ import torch
 from torch.utils.data import Dataset
 
 from lung_nodule_detection_luna16.utils import IrcTuple, XyzTuple, irc2xyz, xyz2irc
+
 raw_cache = diskcache.FanoutCache("data-unversioned/cache/luna_raw")
 
 CandidateInfoTuple = namedtuple(
     "CandidateInfoTuple",
     "isNodule_bool, diameter_mm, series_uid, center_xyz",
 )
-PARENT_DIR = Path(__file__).parent.parent.parent.resolve()
-print(f"Parent directory: {PARENT_DIR}")
-DEFAULT_MHD_DATA_FOLDER = Path(f"{PARENT_DIR}/data")
+ROOT_DIR = Path(__file__).parent.parent.parent.resolve()
+DATA_FOLDER = Path(f"{ROOT_DIR}/data")
+DEFAULT_MHD_DATA_FOLDER = Path(f"{ROOT_DIR}/data")
 
 
 @functools.lru_cache(maxsize=1)
 def getCandidateInfoList(
     require_on_disk=True,
     mhd_data_folder=DEFAULT_MHD_DATA_FOLDER,
-    annotations_csv=Path(f"{PARENT_DIR}/data/annotations.csv"),
-    candidates_csv=Path(f"{PARENT_DIR}/data/candidates.csv"),
+    annotations_csv=Path(f"{ROOT_DIR}/data/annotations.csv"),
+    candidates_csv=Path(f"{ROOT_DIR}/data/candidates.csv"),
 ):
     data_directory = Path(mhd_data_folder)
     mhd_files = list(data_directory.rglob("subset*/*.mhd"))

@@ -5,6 +5,8 @@ build/
 dist/
 wheels/
 data/
+
+nbs/.ipynb_checkpoints/
 *.egg-info
 data*/
 # Virtual environments

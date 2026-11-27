@@ -20,3 +20,4 @@ def xyz2irc(coord_xyz, origin_xyz, vxSize_xyz, direction_a):
     cri_a = (np.linalg.inv(direction_a) @ (coord_a - origin_a)) / vxSize_a
     cri_a = np.round(cri_a)
     return IrcTuple(int(cri_a[2]), int(cri_a[1]), int(cri_a[0]))
+
